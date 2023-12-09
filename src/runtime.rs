@@ -149,6 +149,47 @@ pub mod ext {
             self.0.quote_into_iter()
         }
     }
+
+    impl<'q, Idx> RepAsIteratorExt<'q> for std::ops::Range<Idx>
+    where
+        Self: IntoIterator + Clone,
+    {
+        type Iter = <Self as IntoIterator>::IntoIter;
+
+        fn quote_into_iter(&'q self) -> (Self::Iter, HasIter) {
+            (self.clone().into_iter(), HasIter)
+        }
+    }
+    impl<'q, Idx> RepAsIteratorExt<'q> for std::ops::RangeTo<Idx>
+    where
+        Self: IntoIterator + Clone,
+    {
+        type Iter = <Self as IntoIterator>::IntoIter;
+
+        fn quote_into_iter(&'q self) -> (Self::Iter, HasIter) {
+            (self.clone().into_iter(), HasIter)
+        }
+    }
+    impl<'q, Idx> RepAsIteratorExt<'q> for std::ops::RangeInclusive<Idx>
+    where
+        Self: IntoIterator + Clone,
+    {
+        type Iter = <Self as IntoIterator>::IntoIter;
+
+        fn quote_into_iter(&'q self) -> (Self::Iter, HasIter) {
+            (self.clone().into_iter(), HasIter)
+        }
+    }
+    impl<'q, Idx> RepAsIteratorExt<'q> for std::ops::RangeToInclusive<Idx>
+    where
+        Self: IntoIterator + Clone,
+    {
+        type Iter = <Self as IntoIterator>::IntoIter;
+
+        fn quote_into_iter(&'q self) -> (Self::Iter, HasIter) {
+            (self.clone().into_iter(), HasIter)
+        }
+    }
 }
 
 // Helper type used within interpolations to allow for repeated binding names.
